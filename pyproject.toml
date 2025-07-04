@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "euil"
+version = "0.1.0"
+authors = [
+    {name = "IronBill25"}
+]
+description = "Extensible UI Language - A simple XML-based UI library for Tkinter"
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0"
+]
+
+[project.scripts]
+euil = "euil.main:cli_main"

@@ -1,0 +1,82 @@
+<Window title="EUIL Demo App" width="500" height="400">
+    <!-- Main Menu Bar -->
+    <Menu id="mainMenu">
+        <Menu text="File" id="fileMenu">
+            <Command label="New" command="new_file" />
+            <Command label="Open..." command="open_file" />
+            <Command label="Save" command="save_file" />
+            <Separator />
+            <Command label="Exit" command="exit_app" />
+        </Menu>
+        <Menu text="Edit" id="editMenu">
+            <Command label="Cut" command="cut_text" />
+            <Command label="Copy" command="copy_text" />
+            <Command label="Paste" command="paste_text" />
+        </Menu>
+    </Menu>
+    
+    <!-- Main Content -->
+    <Notebook padding="10">
+        <!-- First Tab: Basic Controls -->
+        <Frame text="Basic Controls">
+            <Frame padding="5">
+                <LabelFrame text="User Information" padding="5">
+                    <Grid columns="2" padding="5" rowspacing="5" columnspacing="5">
+                        <Txt text="Name:" />
+                        <Entry id="nameEntry" width="30" />
+                        
+                        <Txt text="Email:" />
+                        <Entry id="emailEntry" width="30" />
+                        
+                        <Txt text="Age:" />
+                        <Spinbox id="ageSpin" from="1" to="120" width="10" />
+                        
+                        <Txt text="Country:" />
+                        <Combo id="countryCombo" values="USA,Canada,UK,Germany,France,Japan" width="28" />
+                    </Grid>
+                </LabelFrame>
+                
+                <Button text="Submit" action="submit_form" />
+
+            </Frame>
+        </Frame>
+        
+        <!-- Second Tab: More Widgets -->
+        <Frame text="More Widgets">
+            <Panedwin orient="horizontal" padding="5">
+                <Frame width="200" padding="5">
+                    <Txt text="Checkbox Options:" font="Arial 10 bold" />
+                    <Check text="Enable Notifications" id="notifyCheck" />
+                    <Check text="Dark Mode" id="darkModeCheck" />
+                    <Separator />
+                    
+                    <Txt text="\nRadio Selection:" font="Arial 10 bold" />
+                    <Radio text="Option 1" value="1" variable="radioVar" />
+                    <Radio text="Option 2" value="2" variable="radioVar" />
+                    <Radio text="Option 3" value="3" variable="radioVar" />
+                </Frame>
+                
+                <Frame padding="5">
+                    <Txt text="Progress:" font="Arial 10 bold" />
+                    <Progress id="progressBar" mode="indeterminate" />
+                    <Button text="Start Progress" action="start_progress" />
+                    
+                    <Separator />
+                    
+                    <Txt text="\nScale Control:" font="Arial 10 bold" />
+                    <Scale id="volumeScale" from="0" to="100" orient="horizontal" length="200" />
+                    <Txt id="volumeText" text="Volume: 50%" />
+                </Frame>
+            </Panedwin>
+        </Frame>
+        
+        <!-- Third Tab: Text Widget -->
+        <Frame text="Text Editor">
+            <Frame padding="5">
+                <Text id="textEditor" width="60" height="15" wrap="word"></Text>
+            </Frame>
+        </Frame>
+    </Notebook>
+    
+    <Statusbar id="statusBar" text="Ready" />
+</Window>

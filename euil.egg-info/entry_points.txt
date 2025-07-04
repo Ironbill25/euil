@@ -1,0 +1,2 @@
+[console_scripts]
+euil = euil.main:cli_main

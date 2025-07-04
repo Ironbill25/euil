@@ -1,0 +1,22 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+euil/__init__.py
+euil/core.py
+euil/main.py
+euil.egg-info/PKG-INFO
+euil.egg-info/SOURCES.txt
+euil.egg-info/dependency_links.txt
+euil.egg-info/entry_points.txt
+euil.egg-info/requires.txt
+euil.egg-info/top_level.txt
+euil/__pycache__/__init__.cpython-313.pyc
+euil/__pycache__/core.cpython-313.pyc
+euil/__pycache__/main.cpython-313.pyc
+examples/example app 1/example.euil
+examples/example app 1/example.py
+examples/feature demo/feature_demo.py
+examples/simple app/simple_app.py
+tests/test_euil.py

@@ -1,0 +1,233 @@
+Metadata-Version: 2.4
+Name: euil
+Version: 0.1.0
+Summary: Extensible UI Language - A simple XML-based UI library for Tkinter
+Home-page: https://github.com/IronBill25/euil
+Author: IronBill25
+Author-email: (not provided)
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# EUIL - Extensible UI Language
+
+EUIL (pronounced "you-ohl") is a simple UI library for creating Tkinter applications with XML.
+You can make entire apps with this language.
+
+## Features
+
+- Support for most Tkinter and ttk widgets
+- Custom widget attributes and styling
+- Event handling and callbacks
+- Automatic layouts like grids.
+
+## Limitations
+
+- <span style="color: red;"><strong>NOT PRODUCTION READY</strong></span>
+- Limited support for advanced features
+- Many bugs, hasn't been tested much with complex apps.
+
+## Installation
+
+1. Clone this repository
+2. Ensure you have Python installed (3.12+ recommended, older versions not tested)
+
+## Basic Usage
+
+1. Create an EUIL file (e.g., `app.euil`) with your app structure
+2. Create a Python file to load and run your app.
+
+### Example app
+
+app.euil:
+```xml
+<Window title="My App" width="800" height="600">
+    <Frame padding="5">
+        <Label text="Hello, World!" />
+        <Button text="Click me" action="on_button_click" />
+    </Frame>
+</Window>
+```
+
+app.py:
+```python
+import EUIL # Import the EUIL library
+
+def on_button_click(): # The function to be called when the button is clicked
+    print("Button clicked!")
+
+handlers = { # Bindings for functions, used in the action attribute of widgets such as buttons
+    'on_button_click': on_button_click
+}
+
+with open("app.euil", "r") as f: # Read the app's contents for use in EUIL.build_ui()
+    app = f.read()
+
+root = EUIL.build_ui(app, handlers) # Build and run the app.
+root.mainloop()
+```
+
+## XML Structure
+
+### Root Element
+```xml
+<Window title="My App" width="800" height="600">
+    <!-- Widgets go here -->
+</Window>
+```
+
+### Basic Widgets
+
+#### Frame
+```xml
+<Frame padding="5">
+    <!-- Child widgets -->
+</Frame>
+```
+
+#### Button
+```xml
+<Button text="Click me" action="on_button_click" />
+```
+
+#### Label
+```xml
+<Label text="Hello, World!" />
+```
+
+#### Entry
+```xml
+<Entry id="username" width="30" />
+```
+
+#### Checkbutton
+```xml
+<Check text="Enable feature" id="feature_toggle" />
+```
+
+### Layout
+
+#### Grid Layout
+```xml
+<Grid columns="2" rowspacing="5" columnspacing="5">
+    <Label text="Username:" />
+    <Entry id="username" />
+    <Label text="Password:" />
+    <Entry id="password" show="•" />
+</Grid>
+```
+
+#### Notebook (Tabs)
+```xml
+<Notebook>
+    <Frame text="Tab 1">
+        <!-- Tab 1 content -->
+    </Frame>
+    <Frame text="Tab 2">
+        <!-- Tab 2 content -->
+    </Frame>
+</Notebook>
+```
+
+#### Menu
+```xml
+<Menu>
+    <Menu text="File">
+        <Command label="New" command="new_file" />
+        <Command label="Open" command="open_file" />
+        <Separator />
+        <Command label="Exit" command="exit_app" />
+    </Menu>
+    <Menu text="Help">
+        <Command label="About" command="show_about" />
+    </Menu>
+</Menu>
+```
+
+## Widget Reference
+
+### Common Attributes
+- `id`: Unique identifier for the widget
+- `text`: Display text (for labels, buttons, etc.)
+- `width`, `height`: Dimensions in characters/pixels
+- `padding`: Internal padding
+- `style`: Custom style name
+- `command`: Function to be called when the widget is interacted with
+- `action`: Same as command.
+
+### Supported Widgets
+
+| Widget Tag | Description |
+|------------|-------------|
+| `Frame` | Container for other widgets |
+| `Button` | Clickable button |
+| `Label` | Text display |
+| `Entry` | Single-line text input |
+| `Text` | Multi-line text input |
+| `Check` | Checkbox |
+| `Radio` | Radio button |
+| `Combo` | Dropdown list |
+| `List` | Listbox |
+| `Menu` | Menu bar |
+| `Notebook` | Tabbed interface |
+| `Panedwin` | Resizable panes |
+| `Progress` | Progress bar |
+| `Scale` | Slider control |
+| `Scroll` | Scrollbar |
+| `Separator` | Visual separator |
+
+## Event Handling
+
+1. Define your handler functions in Python:
+   ```python
+   def on_button_click():
+       print("Button clicked!")
+   ```
+
+2. Map the handler names in your handlers dictionary:
+   ```python
+   handlers = {
+       'on_button_click': on_button_click
+   }
+   ```
+
+3. Reference the handler in your XML:
+   ```xml
+   <Button text="Click me" action="on_button_click" />
+   ```
+
+## Styling
+
+EUIL supports basic styling through widget attributes.
+For advanced theming, you can access the underlying ttk.Style object:
+
+```python
+style = ttk.Style()
+style.configure('TButton', font=('Arial', 12))
+style.configure('TLabel', foreground='blue')
+```
+
+## Examples
+
+See the `example.euil` and `example.py` files (in the example folder)
+for a complete example application.
+
+## License
+
+MIT License - Feel free to use and modify for any purpose.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+Testing is also welcome, we need to test this with the most complex and limit-pushing apps possible
+so we can ensure it works robustly. Tell us about any bugs you find by opening an issue.
