@@ -3,6 +3,8 @@
 EUIL (pronounced "you-ohl") is a simple UI library for creating Tkinter applications with XML.
 You can make entire apps with this language.
 
+NOTE: THIS IS ARCHIVED! THERE IS A NEW EUIL REPLACING THIS!
+
 ## Features
 
 - Support for most Tkinter and ttk widgets
